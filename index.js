@@ -4,11 +4,13 @@ const bodyParser = express.json();
 const home = require('./routes/homeRouter');
 const mongoose = require('mongoose');
 const Todo = require('./model/TodoList');
+const cors = require('cors');
 
 function main() {
   const app = express();
   const port = process.env.PORT || 8000;
   app.use(bodyParser);
+  app.use(cors());
   mongoose.connect(
     'mongodb+srv://pratap:patanahi@cluster0-ae91p.mongodb.net/test?retryWrites=true&w=majority',
     { useNewUrlParser: true },
@@ -45,6 +47,7 @@ function main() {
 
   // Get all Todos
   app.get('/get', async (req, res) => {
+    console.log('Get called');
     try {
       const savedTodos = await Todo.find();
       res.status(200).json(savedTodos);
@@ -134,3 +137,9 @@ main();
 // cookies
 // JWT
 //
+
+// 1. git status
+// 2. git add -A
+// 3. git commit -m 'Some message'
+// 4. git pull
+// 5. git push
