@@ -80,6 +80,7 @@ function main() {
 
   // Update one by id
   app.post('/update/:id', async (req, res) => {
+    console.log('Update called');
     const { id } = req.params;
     const { title, is_completed } = req.body;
     try {
@@ -143,3 +144,10 @@ main();
 // 3. git commit -m 'Some message'
 // 4. git pull
 // 5. git push
+
+// mindleware -> logger (data: {}, [], calledFrom, err{ bool})
+
+// if(err)
+// store the error in database
+// format the error and return
+// if no error res with the data
